@@ -3,127 +3,344 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MortgageSuite - Support & Privacy</title>
+    <title>Addison Coston | Mortgage Banker</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Alpine.js -->
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
-        body { font-family: 'Inter', sans-serif; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        [x-cloak] { display: none !important; }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800">
 
-    <!-- Header -->
-    <header class="bg-slate-900 text-white py-12">
-        <div class="max-w-3xl mx-auto px-6 text-center">
-            <div class="inline-flex items-center justify-center w-16 h-16 bg-emerald-500 rounded-2xl mb-6 shadow-lg shadow-emerald-500/20">
-                <i class="fa-solid fa-calculator text-3xl"></i>
+<!-- 
+    ================= CONFIGURATION SECTION ================= 
+    EDIT THE VALUES BELOW TO UPDATE YOUR ENTIRE WEBSITE 
+-->
+<body class="bg-slate-50 text-slate-800 antialiased"
+      x-data="{
+          profile: {
+              name: 'Addison Coston',
+              nmls: '2719438',
+              company: 'Rocket Mortgage, LLC',
+              companyNmls: '3030',
+              phone: '(313) 373-8487',
+              email: 'AddisonCoston@RocketMortgage.com',
+          },
+          links: {
+              // Your specific application link (e.g., rocketmortgage.com/apply/addison)
+              // If you don't have one yet, leave as '#contact' to scroll to the contact form
+              apply: '#contact', 
+              
+              // Your Calendly or Scheduling Link
+              calendly: 'https://calendly.com/', 
+
+              // Your App Store Link (when live)
+              appStore: '#', 
+
+              // Support Email for the App
+              supportEmail: 'mortgage@canyoufixthis.com' 
+          },
+          // Helper to clean phone number for links
+          get telLink() { return 'tel:' + this.profile.phone.replace(/\D/g,''); }
+      }">
+
+    <!-- Navigation -->
+    <nav class="bg-white border-b border-slate-200 sticky top-0 z-50">
+        <div class="max-w-5xl mx-auto px-6 h-16 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="bg-emerald-600 text-white w-8 h-8 rounded-lg flex items-center justify-center font-bold" x-text="profile.name.charAt(0)">A</div>
+                <div class="flex flex-col">
+                    <span class="font-bold text-slate-900 leading-tight" x-text="profile.name"></span>
+                    <span class="text-[10px] text-slate-500 font-medium uppercase tracking-wide leading-none">NMLS #<span x-text="profile.nmls"></span></span>
+                </div>
             </div>
-            <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight mb-2">MortgageSuite Support</h1>
-            <p class="text-slate-400">We're here to help you plan your home purchase.</p>
+            
+            <div class="flex items-center gap-3">
+                <a :href="'mailto:' + profile.email" class="hidden sm:flex items-center gap-2 text-slate-600 hover:text-emerald-600 text-sm font-medium transition-colors">
+                    <i class="fa-solid fa-envelope"></i> Email
+                </a>
+                <a :href="telLink" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold py-2.5 px-5 rounded-full transition-colors shadow-lg shadow-emerald-500/20">
+                    <i class="fa-solid fa-phone mr-1"></i> <span x-text="profile.phone"></span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="bg-slate-900 text-white pt-20 pb-24 relative overflow-hidden">
+        <div class="absolute top-0 right-0 p-32 bg-emerald-500/10 rounded-full blur-[100px] -mr-16 -mt-16 pointer-events-none"></div>
+        
+        <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
+            <div class="inline-block mb-4 px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 text-xs font-bold uppercase tracking-wider">
+                Mortgage Banker
+            </div>
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
+                Stop guessing. <br/>
+                Start <span class="text-emerald-400">packing.</span>
+            </h1>
+            <p class="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
+                Get the speed of <span x-text="profile.company.split(',')[0]"></span> technology paired with a strategy built just for you. No confusing jargon—just clear numbers and a verified approval that wins offers.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a :href="links.apply" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3.5 px-8 rounded-xl transition-all shadow-lg shadow-emerald-900/50">
+                    Let's Get You Approved
+                </a>
+                <a href="#calculator" class="bg-white/10 hover:bg-white/20 text-white font-bold py-3.5 px-8 rounded-xl transition-all border border-white/10">
+                    Check the Math
+                </a>
+            </div>
         </div>
     </header>
 
-    <main class="max-w-3xl mx-auto px-6 py-12 space-y-12">
+    <main class="max-w-4xl mx-auto px-6 -mt-12 relative z-20 space-y-24 mb-24">
 
-        <!-- Contact Section -->
-        <section id="contact" class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
-            <h2 class="text-2xl font-bold mb-4 flex items-center gap-2">
-                <i class="fa-solid fa-life-ring text-emerald-600"></i> Contact Support
-            </h2>
-            <p class="text-slate-600 mb-6">
-                Found a bug? Have a feature request? Or just confused about a calculation? 
-                Send us an email and we'll get back to you within 24-48 hours.
-            </p>
-            
-            <!-- 
-               OPTION 1: Simple Mailto Link (Easiest, no backend required) 
-               Replace 'your-email@example.com' with your actual support email.
-            -->
-            <a href="mailto:mortgage@canyoufixthis.com?subject=MortgageSuite%20Support%20Request" 
-               class="inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-6 rounded-xl transition-all w-full md:w-auto">
-                <i class="fa-solid fa-paper-plane"></i> Email Support
-            </a>
+        <!-- Calculator Widget -->
+        <section id="calculator" class="bg-white p-6 md:p-8 rounded-3xl shadow-xl border border-slate-200" x-data="{ 
+            price: 450000, 
+            down: 13500, 
+            rate: 6.5,
+            get principal() { return this.price - this.down },
+            get payment() { 
+                const r = this.rate / 100 / 12;
+                const n = 360; 
+                if(this.rate == 0) return this.principal / n;
+                return (this.principal * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+            }
+        }">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+                <div>
+                    <h2 class="text-2xl font-bold text-slate-900">Do the numbers work?</h2>
+                    <p class="text-slate-500 text-sm">See your estimated Principal & Interest in seconds.</p>
+                </div>
+                <div class="bg-emerald-50 text-emerald-800 px-4 py-2 rounded-lg font-mono font-bold text-xl border border-emerald-100">
+                    $<span x-text="payment.toLocaleString('en-US', {maximumFractionDigits: 0})"></span><span class="text-xs text-emerald-600 ml-1">/mo</span>
+                </div>
+            </div>
 
-            <!-- 
-               OPTION 2: Web Form (If you prefer a form over email)
-               1. Sign up for a free account at https://formspree.io
-               2. Create a new form and get your unique URL (e.g., https://formspree.io/f/xbjqrzk)
-               3. Uncomment the code below and replace the 'action' URL.
-            -->
-            <!--
-            <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST" class="mt-6 space-y-4">
-                <input type="email" name="email" placeholder="Your Email" required class="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none">
-                <textarea name="message" placeholder="How can we help?" rows="4" required class="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none"></textarea>
-                <button type="submit" class="w-full bg-slate-900 text-white font-bold py-3 rounded-lg hover:bg-slate-800">Send Message</button>
-            </form>
-            -->
-        </section>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 uppercase mb-2">Home Price</label>
+                    <div class="relative">
+                        <span class="absolute left-3 top-2.5 text-slate-400">$</span>
+                        <input type="number" x-model="price" class="w-full pl-7 p-2 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none font-medium">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 uppercase mb-2">Down Payment</label>
+                    <div class="relative">
+                        <span class="absolute left-3 top-2.5 text-slate-400">$</span>
+                        <input type="number" x-model="down" class="w-full pl-7 p-2 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none font-medium">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 uppercase mb-2">Interest Rate (%)</label>
+                    <input type="number" step="0.125" x-model="rate" class="w-full p-2 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none font-medium">
+                </div>
+            </div>
 
-        <!-- FAQ Section -->
-        <section id="faq">
-            <h2 class="text-xl font-bold mb-6 text-slate-900">Frequently Asked Questions</h2>
-            <div class="space-y-4">
-                <details class="group bg-white p-4 rounded-xl border border-slate-200 cursor-pointer">
-                    <summary class="flex justify-between items-center font-medium list-none">
-                        <span>How is the monthly payment calculated?</span>
-                        <span class="transition group-open:rotate-180"><i class="fa-solid fa-chevron-down text-slate-400"></i></span>
-                    </summary>
-                    <p class="text-slate-600 mt-3 text-sm leading-relaxed">
-                        We use standard amortization formulas used by major US lenders. We calculate Principal & Interest based on your rate and term, then add estimated Property Taxes, Home Insurance, and HOA fees to give you a complete "PITI" estimate.
-                    </p>
-                </details>
-
-                <details class="group bg-white p-4 rounded-xl border border-slate-200 cursor-pointer">
-                    <summary class="flex justify-between items-center font-medium list-none">
-                        <span>Is my data private?</span>
-                        <span class="transition group-open:rotate-180"><i class="fa-solid fa-chevron-down text-slate-400"></i></span>
-                    </summary>
-                    <p class="text-slate-600 mt-3 text-sm leading-relaxed">
-                        Yes. All calculations happen locally on your device. We do not store your income, credit score, or home price history on our servers. If you choose to "Contact a Banker," only the information you explicitly submit in that form is transmitted securely.
-                    </p>
-                </details>
-
-                <details class="group bg-white p-4 rounded-xl border border-slate-200 cursor-pointer">
-                    <summary class="flex justify-between items-center font-medium list-none">
-                        <span>How do I delete my data?</span>
-                        <span class="transition group-open:rotate-180"><i class="fa-solid fa-chevron-down text-slate-400"></i></span>
-                    </summary>
-                    <p class="text-slate-600 mt-3 text-sm leading-relaxed">
-                        Since we do not create user accounts or store calculation history in the cloud, simply uninstalling the app will remove all local data from your device.
-                    </p>
-                </details>
+            <div class="pt-6 border-t border-slate-100">
+                <div class="bg-slate-900 rounded-2xl p-6 text-white flex flex-col md:flex-row items-center justify-between gap-6">
+                    <div>
+                        <h3 class="font-bold text-lg mb-1">Want the full picture?</h3>
+                        <p class="text-slate-400 text-sm">Download <span class="text-emerald-400 font-bold">MortgageSuite</span> to see taxes, insurance, FHA/VA fees, and exact closing costs.</p>
+                    </div>
+                    <a :href="links.appStore" class="bg-white text-slate-900 hover:bg-emerald-50 font-bold py-2.5 px-5 rounded-xl text-sm transition-colors whitespace-nowrap">
+                        <i class="fa-brands fa-apple text-lg mr-1"></i> Coming Soon
+                    </a>
+                </div>
+                <p class="text-[10px] text-slate-400 mt-4 text-center">* This calculator is for estimation purposes only and does not constitute a loan offer. Actual rates and payments may vary.</p>
             </div>
         </section>
 
-        <!-- Privacy Policy (Required for App Store) -->
-        <section id="privacy" class="prose prose-slate max-w-none">
-            <h2 class="text-xl font-bold mb-4 text-slate-900">Privacy Policy</h2>
-            <div class="text-xs text-slate-500 space-y-4">
-                <p><strong>Effective Date:</strong> December 20, 2025</p>
-                <p>
-                    MortgageSuite ("we", "our", or "us") is committed to protecting your privacy. This Privacy Policy explains how your personal information is collected, used, and disclosed by MortgageSuite.
-                </p>
-                <h4 class="font-bold text-slate-700">1. Information We Collect</h4>
-                <p>
-                    We do not collect personal data (such as financial details, credit scores, or income) for storage on our servers. All calculator inputs remain on your local device. If you use the "Contact" feature, we collect your Name, Email, and Phone number solely to facilitate communication with the designated loan officer.
-                </p>
-                <h4 class="font-bold text-slate-700">2. How We Use Your Information</h4>
-                <p>
-                    Information submitted via the contact form is used exclusively to respond to your inquiry regarding mortgage services. We do not sell or share this data with third-party advertisers.
-                </p>
-                <h4 class="font-bold text-slate-700">3. Contact Us</h4>
-                <p>
-                    If you have any questions about this Privacy Policy, please contact us at <a href="mailto:mortgage@canyoufixthis.com" class="text-emerald-600 underline">mortgage@canyoufixthis.com</a>.
-                </p>
+        <!-- FEATURE 4: Loan Process Timeline -->
+        <section class="py-8">
+            <h2 class="text-3xl font-bold mb-10 text-center text-slate-900">Your Roadmap to Closing</h2>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Step 1 -->
+                <div class="relative pl-8 md:pl-0 md:text-center md:pt-10 group">
+                    <div class="absolute left-0 top-0 md:left-1/2 md:-ml-6 w-12 h-12 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center font-bold text-xl shadow-sm z-10 group-hover:bg-emerald-600 group-hover:text-white transition-colors">1</div>
+                    <div class="hidden md:block absolute top-6 left-1/2 w-full h-1 bg-slate-200 -z-0"></div>
+                    <h4 class="font-bold text-lg mt-2">Apply Online</h4>
+                    <p class="text-sm text-slate-500 mt-2">Start with a quick digital application. It takes about 15 minutes.</p>
+                </div>
+                <!-- Step 2 -->
+                <div class="relative pl-8 md:pl-0 md:text-center md:pt-10 group">
+                    <div class="absolute left-0 top-0 md:left-1/2 md:-ml-6 w-12 h-12 bg-white border-2 border-emerald-100 text-emerald-600 rounded-full flex items-center justify-center font-bold text-xl shadow-sm z-10 group-hover:border-emerald-600 transition-colors">2</div>
+                    <div class="hidden md:block absolute top-6 left-1/2 w-full h-1 bg-slate-200 -z-0"></div>
+                    <h4 class="font-bold text-lg mt-2">Verified Approval</h4>
+                    <p class="text-sm text-slate-500 mt-2">We verify your income and assets upfront so you shop like a cash buyer.</p>
+                </div>
+                <!-- Step 3 -->
+                <div class="relative pl-8 md:pl-0 md:text-center md:pt-10 group">
+                    <div class="absolute left-0 top-0 md:left-1/2 md:-ml-6 w-12 h-12 bg-white border-2 border-emerald-100 text-emerald-600 rounded-full flex items-center justify-center font-bold text-xl shadow-sm z-10 group-hover:border-emerald-600 transition-colors">3</div>
+                    <div class="hidden md:block absolute top-6 left-1/2 w-full h-1 bg-slate-200 -z-0"></div>
+                    <h4 class="font-bold text-lg mt-2">Shop & Lock</h4>
+                    <p class="text-sm text-slate-500 mt-2">Find your home, make an offer, and I'll help you lock in a great rate.</p>
+                </div>
+                <!-- Step 4 -->
+                <div class="relative pl-8 md:pl-0 md:text-center md:pt-10 group">
+                    <div class="absolute left-0 top-0 md:left-1/2 md:-ml-6 w-12 h-12 bg-slate-900 text-white rounded-full flex items-center justify-center font-bold text-xl shadow-lg z-10"><i class="fa-solid fa-check"></i></div>
+                    <h4 class="font-bold text-lg mt-2">Clear to Close</h4>
+                    <p class="text-sm text-slate-500 mt-2">Sign the papers and get your keys. We clear conditions fast.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURE 5: Document Checklist -->
+        <section class="bg-emerald-50 rounded-3xl p-8 md:p-12 border border-emerald-100">
+            <div class="flex flex-col md:flex-row gap-12 items-start">
+                <div class="flex-1">
+                    <span class="text-emerald-600 font-bold uppercase tracking-wider text-xs mb-2 block">Get Prepared</span>
+                    <h2 class="text-3xl font-bold text-slate-900 mb-4">Gather Your Documents</h2>
+                    <p class="text-slate-600 leading-relaxed mb-6">
+                        Having these ready speeds up the Verified Approval process. Most can be uploaded digitally in seconds.
+                    </p>
+                    <a :href="links.apply" class="inline-flex items-center text-emerald-700 font-bold hover:underline">
+                        Start your application <i class="fa-solid fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+                <div class="flex-1 w-full bg-white p-6 rounded-2xl shadow-sm">
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-4">
+                            <div class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center"><i class="fa-solid fa-file-invoice"></i></div>
+                            <span class="font-medium text-slate-700">W-2s (Last 2 Years)</span>
+                        </li>
+                        <li class="flex items-center gap-4">
+                            <div class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center"><i class="fa-solid fa-money-bill-wave"></i></div>
+                            <span class="font-medium text-slate-700">Pay Stubs (Last 30 Days)</span>
+                        </li>
+                        <li class="flex items-center gap-4">
+                            <div class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center"><i class="fa-solid fa-building-columns"></i></div>
+                            <span class="font-medium text-slate-700">Bank Statements (Last 2 Months)</span>
+                        </li>
+                        <li class="flex items-center gap-4">
+                            <div class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center"><i class="fa-solid fa-id-card"></i></div>
+                            <span class="font-medium text-slate-700">Photo ID & Social Security Number</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- About / Why Me -->
+        <section id="about" class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div>
+                <h2 class="text-3xl font-bold mb-6 text-slate-900" x-text="'Not your average lender.'"></h2>
+                <div class="space-y-6">
+                    <div class="flex gap-4">
+                        <div class="w-10 h-10 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600 flex-shrink-0"><i class="fa-solid fa-bolt"></i></div>
+                        <div>
+                            <h4 class="font-bold text-slate-800">Speed without the Stress</h4>
+                            <p class="text-slate-600 text-sm mt-1">We move fast so you don't miss out. With a Verified Approval from <span x-text="profile.company.split(',')[0]"></span>, your offer stands out.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 flex-shrink-0"><i class="fa-solid fa-comments"></i></div>
+                        <div>
+                            <h4 class="font-bold text-slate-800">Answers, Not Jargon</h4>
+                            <p class="text-slate-600 text-sm mt-1">I explain the "why" behind the numbers. You'll know exactly what you're signing and why it's the right loan for you.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center text-purple-600 flex-shrink-0"><i class="fa-solid fa-layer-group"></i></div>
+                        <div>
+                            <h4 class="font-bold text-slate-800">Strategy, Not Just Rates</h4>
+                            <p class="text-slate-600 text-sm mt-1">Lowest rate isn't always the lowest cost. I'll help you structure your down payment and closing costs to maximize your savings.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-slate-100 rounded-3xl h-80 flex items-center justify-center border-2 border-slate-200 border-dashed">
+                <span class="text-slate-400 font-medium"><i class="fa-solid fa-image mr-2"></i> [Add Your Photo Here]</span>
+            </div>
+        </section>
+
+        <!-- Contact Form -->
+        <section id="contact" class="bg-slate-900 text-white rounded-3xl p-8 md:p-12 shadow-2xl relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 rounded-full -mr-16 -mt-16 blur-3xl pointer-events-none"></div>
+            
+            <div class="relative z-10 text-center max-w-2xl mx-auto">
+                <h2 class="text-3xl font-bold mb-4">Let's make it official.</h2>
+                <p class="text-slate-400 mb-8">Questions about a property? Need a pre-approval letter this weekend? I'm just a phone call away.</p>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                    <a :href="telLink" class="flex items-center justify-center gap-3 bg-emerald-600 hover:bg-emerald-500 text-white p-4 rounded-xl font-bold transition-all">
+                        <i class="fa-solid fa-phone"></i> Call <span x-text="profile.phone"></span>
+                    </a>
+                    <a :href="'mailto:' + profile.email" class="flex items-center justify-center gap-3 bg-white/10 hover:bg-white/20 text-white p-4 rounded-xl font-bold transition-all border border-white/10">
+                        <i class="fa-solid fa-envelope"></i> Email Me
+                    </a>
+                </div>
+                
+                <!-- FEATURE 3: Book a Meeting (Calendly) -->
+                <div class="text-center">
+                    <p class="text-slate-500 text-sm mb-3">Prefer to schedule a time?</p>
+                    <a :href="links.calendly" target="_blank" class="inline-flex items-center gap-2 text-emerald-400 hover:text-emerald-300 font-bold transition-colors">
+                        <i class="fa-regular fa-calendar-check"></i> Schedule a 15-min Strategy Call
+                    </a>
+                </div>
+
+                <div class="mt-8 pt-8 border-t border-white/10 text-xs text-slate-500">
+                    <p><span x-text="profile.name"></span> | NMLS #<span x-text="profile.nmls"></span></p>
+                    <p><span x-text="profile.company"></span> | NMLS #<span x-text="profile.companyNmls"></span></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- APP STORE SUPPORT SECTION (Required for Submission) -->
+        <section id="support" class="pt-12 border-t border-slate-200">
+            <div class="text-center mb-8">
+                <h2 class="text-xl font-bold text-slate-900">App Support & Privacy</h2>
+                <p class="text-slate-500 text-sm mt-1">Resources for the MortgageSuite mobile application.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Support Info -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                    <h3 class="font-bold mb-4 flex items-center gap-2"><i class="fa-solid fa-life-ring text-emerald-600"></i> Contact Support</h3>
+                    <p class="text-sm text-slate-600 mb-4">For technical issues regarding the mobile app, bugs, or calculation questions:</p>
+                    <a :href="'mailto:' + links.supportEmail" class="text-emerald-700 font-bold hover:underline text-sm" x-text="links.supportEmail"></a>
+                </div>
+
+                <!-- Privacy Policy -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                    <h3 class="font-bold mb-4 flex items-center gap-2"><i class="fa-solid fa-shield text-blue-600"></i> Privacy Policy</h3>
+                    <div class="h-32 overflow-y-auto text-[10px] text-slate-500 space-y-2 pr-2 custom-scrollbar">
+                        <p><strong>Effective Date:</strong> Dec 20, 2025</p>
+                        <p>MortgageSuite ("we") respects your privacy. We do not store financial data, income, or credit scores on our servers. All calculations are performed locally on your device.</p>
+                        <p>If you use the "Contact Banker" feature, your Name, Phone, and Email are transmitted securely solely to facilitate your loan inquiry.</p>
+                        <p>We do not sell data to third parties.</p>
+                    </div>
+                </div>
             </div>
         </section>
 
     </main>
 
-    <footer class="bg-slate-50 border-t border-slate-200 py-8 text-center">
-        <p class="text-slate-400 text-sm">&copy; 2025 MortgageSuite. All rights reserved.</p>
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 py-12">
+        <div class="max-w-5xl mx-auto px-6 text-center">
+            <div class="flex items-center justify-center gap-2 mb-6">
+                <i class="fa-solid fa-house-chimney text-slate-400 text-2xl"></i>
+                <span class="font-bold text-slate-700 text-lg">Equal Housing Lender</span>
+            </div>
+            <div class="text-[10px] text-slate-400 space-y-3 max-w-3xl mx-auto leading-relaxed">
+                <p>
+                    <span x-text="profile.name"></span> is a Mortgage Banker with <span x-text="profile.company"></span>. NMLS #<span x-text="profile.nmls"></span>. 
+                    <span x-text="profile.company"></span>; NMLS #<span x-text="profile.companyNmls"></span>; <a href="https://www.nmlsconsumeraccess.org/" target="_blank" class="hover:text-emerald-600 underline">www.NMLSConsumerAccess.org</a>. 
+                    Equal Housing Lender. Licensed in 50 states.
+                </p>
+                <p>
+                    This is a personal marketing website and is not the official corporate website of <span x-text="profile.company"></span>. 
+                    Calculators are for illustrative purposes only and accuracy is not guaranteed. 
+                    Default figures shown are hypothetical and may not be applicable to your individual situation.
+                </p>
+                <p>&copy; <span x-text="new Date().getFullYear()"></span> <span x-text="profile.name"></span>. All rights reserved.</p>
+            </div>
+        </div>
     </footer>
-
 </body>
 </html>
