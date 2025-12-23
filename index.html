@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MortgageSuite - Support & Privacy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <!-- Header -->
+    <header class="bg-slate-900 text-white py-12">
+        <div class="max-w-3xl mx-auto px-6 text-center">
+            <div class="inline-flex items-center justify-center w-16 h-16 bg-emerald-500 rounded-2xl mb-6 shadow-lg shadow-emerald-500/20">
+                <i class="fa-solid fa-calculator text-3xl"></i>
+            </div>
+            <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight mb-2">MortgageSuite Support</h1>
+            <p class="text-slate-400">We're here to help you plan your home purchase.</p>
+        </div>
+    </header>
+
+    <main class="max-w-3xl mx-auto px-6 py-12 space-y-12">
+
+        <!-- Contact Section -->
+        <section id="contact" class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
+            <h2 class="text-2xl font-bold mb-4 flex items-center gap-2">
+                <i class="fa-solid fa-life-ring text-emerald-600"></i> Contact Support
+            </h2>
+            <p class="text-slate-600 mb-6">
+                Found a bug? Have a feature request? Or just confused about a calculation? 
+                Send us an email and we'll get back to you within 24-48 hours.
+            </p>
+            
+            <!-- 
+               OPTION 1: Simple Mailto Link (Easiest, no backend required) 
+               Replace 'your-email@example.com' with your actual support email.
+            -->
+            <a href="mailto:mortgage@canyoufixthis.com?subject=MortgageSuite%20Support%20Request" 
+               class="inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-6 rounded-xl transition-all w-full md:w-auto">
+                <i class="fa-solid fa-paper-plane"></i> Email Support
+            </a>
+
+            <!-- 
+               OPTION 2: Web Form (If you prefer a form over email)
+               1. Sign up for a free account at https://formspree.io
+               2. Create a new form and get your unique URL (e.g., https://formspree.io/f/xbjqrzk)
+               3. Uncomment the code below and replace the 'action' URL.
+            -->
+            <!--
+            <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST" class="mt-6 space-y-4">
+                <input type="email" name="email" placeholder="Your Email" required class="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none">
+                <textarea name="message" placeholder="How can we help?" rows="4" required class="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none"></textarea>
+                <button type="submit" class="w-full bg-slate-900 text-white font-bold py-3 rounded-lg hover:bg-slate-800">Send Message</button>
+            </form>
+            -->
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq">
+            <h2 class="text-xl font-bold mb-6 text-slate-900">Frequently Asked Questions</h2>
+            <div class="space-y-4">
+                <details class="group bg-white p-4 rounded-xl border border-slate-200 cursor-pointer">
+                    <summary class="flex justify-between items-center font-medium list-none">
+                        <span>How is the monthly payment calculated?</span>
+                        <span class="transition group-open:rotate-180"><i class="fa-solid fa-chevron-down text-slate-400"></i></span>
+                    </summary>
+                    <p class="text-slate-600 mt-3 text-sm leading-relaxed">
+                        We use standard amortization formulas used by major US lenders. We calculate Principal & Interest based on your rate and term, then add estimated Property Taxes, Home Insurance, and HOA fees to give you a complete "PITI" estimate.
+                    </p>
+                </details>
+
+                <details class="group bg-white p-4 rounded-xl border border-slate-200 cursor-pointer">
+                    <summary class="flex justify-between items-center font-medium list-none">
+                        <span>Is my data private?</span>
+                        <span class="transition group-open:rotate-180"><i class="fa-solid fa-chevron-down text-slate-400"></i></span>
+                    </summary>
+                    <p class="text-slate-600 mt-3 text-sm leading-relaxed">
+                        Yes. All calculations happen locally on your device. We do not store your income, credit score, or home price history on our servers. If you choose to "Contact a Banker," only the information you explicitly submit in that form is transmitted securely.
+                    </p>
+                </details>
+
+                <details class="group bg-white p-4 rounded-xl border border-slate-200 cursor-pointer">
+                    <summary class="flex justify-between items-center font-medium list-none">
+                        <span>How do I delete my data?</span>
+                        <span class="transition group-open:rotate-180"><i class="fa-solid fa-chevron-down text-slate-400"></i></span>
+                    </summary>
+                    <p class="text-slate-600 mt-3 text-sm leading-relaxed">
+                        Since we do not create user accounts or store calculation history in the cloud, simply uninstalling the app will remove all local data from your device.
+                    </p>
+                </details>
+            </div>
+        </section>
+
+        <!-- Privacy Policy (Required for App Store) -->
+        <section id="privacy" class="prose prose-slate max-w-none">
+            <h2 class="text-xl font-bold mb-4 text-slate-900">Privacy Policy</h2>
+            <div class="text-xs text-slate-500 space-y-4">
+                <p><strong>Effective Date:</strong> December 20, 2025</p>
+                <p>
+                    MortgageSuite ("we", "our", or "us") is committed to protecting your privacy. This Privacy Policy explains how your personal information is collected, used, and disclosed by MortgageSuite.
+                </p>
+                <h4 class="font-bold text-slate-700">1. Information We Collect</h4>
+                <p>
+                    We do not collect personal data (such as financial details, credit scores, or income) for storage on our servers. All calculator inputs remain on your local device. If you use the "Contact" feature, we collect your Name, Email, and Phone number solely to facilitate communication with the designated loan officer.
+                </p>
+                <h4 class="font-bold text-slate-700">2. How We Use Your Information</h4>
+                <p>
+                    Information submitted via the contact form is used exclusively to respond to your inquiry regarding mortgage services. We do not sell or share this data with third-party advertisers.
+                </p>
+                <h4 class="font-bold text-slate-700">3. Contact Us</h4>
+                <p>
+                    If you have any questions about this Privacy Policy, please contact us at <a href="mailto:mortgage@canyoufixthis.com" class="text-emerald-600 underline">mortgage@canyoufixthis.com</a>.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-50 border-t border-slate-200 py-8 text-center">
+        <p class="text-slate-400 text-sm">&copy; 2025 MortgageSuite. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
